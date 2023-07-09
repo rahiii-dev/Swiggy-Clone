@@ -29,7 +29,7 @@ export class RestaurantService {
       next: coords => {
 
         this.isLoading = true
-
+        
         radar$.checkUserInRestZone(coords.latitude, coords.longitude).subscribe({
           next: data => {
             if(data) {

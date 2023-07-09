@@ -35,12 +35,18 @@ export class BackendErrorInterceptor implements HttpInterceptor {
           
           // server-side
           if (error.status == 0 || error.status >= 500){
-            return throwError({'message': "Server error please try after some time."})
+            return throwError({
+              'message': "Server error please try after some time.",
+              'error-type': 'Backend Error'
+            })
           }
           else {
             // radar-error
             if(error.error.meta) {
-              return throwError({'message': 'Please try again.'})
+              return throwError({
+                'message': 'Please try again.',
+                'error-type': 'Radar Api Error'
+              })
             }
             return throwError(error.error)
           }
